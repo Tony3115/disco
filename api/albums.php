@@ -56,7 +56,6 @@ $genre = getGenre($pdo);
         </thead>
         <tbody>
             <?php
-            print_r($albums);
             foreach ($albums as $album): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($album['idalbum'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -70,18 +69,18 @@ $genre = getGenre($pdo);
 
     <div class="container">
         <h1>Ajout d'un album </h1>
-        <form action="add_album.php" method="post">
+        <form action="#" method="post">
             <div class="form-group">
                 <label for="exampleInputtitre">Album</label>
-                <input type="text" class="form-control" name="album" value="" required />
+                <input id="album" type="text" class="form-control" name="album" value="" required />
             </div>
             <div class="form-group">
                 <label for="exampleInputtitre">Artiste</label>
-                <input type="text" class="form-control" name="artiste" value="" required />
+                <input id="artiste" type="text" class="form-control" name="artiste" value="" required />
             </div>
             <div class="form-group">
                 <label for="exampleInputtitre">Genre</label>
-                <select class="form-control" name="genre">
+                <select class="form-control" id="genre" name="genre">
                     <?php
                     for ($i = 0; $i < count($genre); $i++) {
                     ?>
@@ -91,12 +90,31 @@ $genre = getGenre($pdo);
                     }
                     ?>
                 </select>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button id="ajout" type="submit" class="btn btn-primary">Ajouter</button>
             </div>
 
         </form>
     </div>
 
 </body>
+<script>
+    let album = document.getElementById("album")
+    let artiste = document.getElementById("artiste")
+    let genre = document.getElementById("genre")
+
+    let url = "http://mini_projet.test/api/api.php"
+
+
+    let bouton = document.getElementById("ajout")
+    bouton.addEventListener("click", function(event) {
+        event.preventDefault()
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            });
+        //    alert("l'album a été ajouté");
+    })
+</script>
 
 </html>
