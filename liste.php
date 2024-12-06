@@ -1,6 +1,6 @@
 <?php
 include('includes/header.php');
-include('includes/pdo.php');
+include('includes/function-pdo.php');
 
 
 // print_r($_SESSION);

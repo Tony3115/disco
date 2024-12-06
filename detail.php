@@ -1,13 +1,13 @@
 <?php
 
 include('includes/header.php');
-include('includes/pdo.php');
+include('includes/function-pdo.php');
 
 $idalbum = 1;
 
 if (isset($_GET['idalbum'])) {
   $idalbum = $_GET['idalbum'];
-  $titres = getChansons($idalbum, $pdo);
+  $titres = getAllChansons($idalbum, $pdo);
 }
 
 if (!isset($_SESSION['email'])) {
@@ -16,18 +16,7 @@ if (!isset($_SESSION['email'])) {
 
 // TODO : fonction pour chercher les informations de l'album
 
-function getChansons($idalbum, $pdo)
-{
 
-  $sql = "SELECT id, idalbum, titre 
-  FROM chansons 
-  WHERE idalbum = :idalbum";
-  $params = ['idalbum' => $idalbum];
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute($params);
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return $result;
-}
 
 ?>
 

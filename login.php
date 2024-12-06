@@ -1,7 +1,7 @@
 <?php
 
 include('includes/header.php');
-include('includes/pdo.php');
+include('includes/function-pdo.php');
 
 
 // je vérifie que email et password ne soient pas vide
