@@ -1,6 +1,7 @@
 <?php
 
 include('includes/header.php');
+include('includes/pdo.php');
 
 $idalbum = 1;
 
