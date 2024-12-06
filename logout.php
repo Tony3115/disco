@@ -2,4 +2,4 @@
 session_start();
 
 session_destroy();
-header('Location: http://mini_projet.test/login.php');
+header('Location: login.php');

@@ -5,7 +5,7 @@ include('includes/pdo.php');
 
 function getGenres($pdo)
 {
-    $sql = "SELECT id, genre FROM genre";
+    $sql = "SELECT id, genre FROM genres";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +25,7 @@ pretty($genres);
 
 
 if (!isset($_SESSION['email'])) {
-    header('Location: http://mini_projet.test/login.php');
+    header('Location: login.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -34,14 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $genre = intval($_POST["genre"]);
 
 
-    $sql = "INSERT INTO disques (album, artiste, genre) VALUES (:album,:artiste,:genre)";
+    $sql = "INSERT INTO albums (album, artiste, genre) VALUES (:album,:artiste,:genre)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':album', $album);
     $stmt->bindParam(':artiste', $artiste);
     $stmt->bindParam('genre', $genre);
     $stmt->execute();
 
-    echo '<p>Disque ajouté avec succès</p>';
+    echo '<p>album ajouté avec succès</p>';
 }
 
 ?>
