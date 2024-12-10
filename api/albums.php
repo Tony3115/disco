@@ -1,5 +1,4 @@
 <?php
-
 include('../includes/header.php');
 include('../includes/function-pdo.php');
 
@@ -45,7 +44,7 @@ $genre = getGenre($pdo);
 
 <body>
     <h1>Liste des Albums</h1>
-    <table>
+    <table id="ma_table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -54,16 +53,8 @@ $genre = getGenre($pdo);
                 <th>Genre</th>
             </tr>
         </thead>
-        <tbody>
-            <?php
-            foreach ($albums as $album): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($album['idalbum'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo htmlspecialchars($album['album'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo htmlspecialchars($album['artiste'], ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo htmlspecialchars($album['genre'], ENT_QUOTES, 'UTF-8'); ?></td>
-                </tr>
-            <?php endforeach; ?>
+        <tbody id="my_body">
+
         </tbody>
     </table>
 
@@ -101,17 +92,23 @@ $genre = getGenre($pdo);
     let album = document.getElementById("album")
     let artiste = document.getElementById("artiste")
     let genre = document.getElementById("genre")
+    let table = document.getElementById("ma_table")
+    let my_body = document.getElementById("my_body")
 
     let url = "http://mini_projet.test/api/api.php"
 
-
     let bouton = document.getElementById("ajout")
-    bouton.addEventListener("click", function(event) {
-        event.preventDefault()
+
+    //affichage des albums
+    document.addEventListener("DOMContentLoaded", function(event) {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                //my_body.innerHTML = `<tr> <td> ${data[0]["idalbum"]} </td> <td> ${data[0]["album"]} </td> <td> ${data[0]["artiste"]} </td> <td> ${data[0]["genre"]} </td></tr>`
+                for (let i = 0; i < data.length; i = i + 1) {
+                    my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> <td> ${data[i]["album"]} </td> <td> ${data[i]["artiste"]} </td> <td> ${data[i]["genre"]} </td></tr>`
+                }
+                console.log(data[0])
             });
         //    alert("l'album a été ajouté");
     })

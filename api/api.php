@@ -1,5 +1,9 @@
 <?php
+include('../includes/function-pdo.php');
 
 
-$table = ["message" => "je suis la"];
-echo json_encode($table);
+$albums = getAlbums($pdo);
+
+
+$table = ["message" => $albums];
+echo json_encode($albums);
