@@ -54,7 +54,6 @@ $genre = getGenre($pdo);
             </tr>
         </thead>
         <tbody id="my_body">
-
         </tbody>
     </table>
 
@@ -99,8 +98,13 @@ $genre = getGenre($pdo);
 
     let bouton = document.getElementById("ajout")
 
+    bouton.addEventListener("click", function(event) {
+        event.preventDefault();
+    })
+
     //affichage des albums
     document.addEventListener("DOMContentLoaded", function(event) {
+
         fetch(url)
             .then(response => response.json())
             .then(data => {
