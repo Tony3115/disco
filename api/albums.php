@@ -136,6 +136,10 @@ $genre = getGenre($pdo);
             .then((response) => {
                 return response.json();
             })
+            .then(data => {
+                console.log(data);
+                alert(data.message);
+            })
 
     })
 </script>
