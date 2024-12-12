@@ -1,4 +1,5 @@
 <?php
+
 include('../includes/header.php');
 include('../includes/function-pdo.php');
 
@@ -59,7 +60,7 @@ $genre = getGenre($pdo);
 
     <div class="container">
         <h1>Ajout d'un album </h1>
-        <form action="#" method="post">
+        <form action="#" method="post" id="form">
             <div class="form-group">
                 <label for="exampleInputtitre">Album</label>
                 <input id="album" type="text" class="form-control" name="album" value="" required />
@@ -93,28 +94,49 @@ $genre = getGenre($pdo);
     let genre = document.getElementById("genre")
     let table = document.getElementById("ma_table")
     let my_body = document.getElementById("my_body")
-
-    let url = "http://mini_projet.test/api/api.php"
-
+    let form = document.getElementById("form")
     let bouton = document.getElementById("ajout")
 
-    bouton.addEventListener("click", function(event) {
-        event.preventDefault();
-    })
+    let url = "http://mini_projet.test/api/api2.php"
 
     //affichage des albums
-    document.addEventListener("DOMContentLoaded", function(event) {
+    /* document.addEventListener("DOMContentLoaded", function(event) {
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                //my_body.innerHTML = `<tr> <td> ${data[0]["idalbum"]} </td> <td> ${data[0]["album"]} </td> <td> ${data[0]["artiste"]} </td> <td> ${data[0]["genre"]} </td></tr>`
-                for (let i = 0; i < data.length; i = i + 1) {
-                    my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> <td> ${data[i]["album"]} </td> <td> ${data[i]["artiste"]} </td> <td> ${data[i]["genre"]} </td></tr>`
-                }
-                console.log(data[0])
-            });
-        //    alert("l'album a été ajouté");
+         fetch(url)
+             .then(response => response.json())
+             .then(data => {
+                 //my_body.innerHTML = `<tr> <td> ${data[0]["idalbum"]} </td> <td> ${data[0]["album"]} </td> <td> ${data[0]["artiste"]} </td> <td> ${data[0]["genre"]} </td></tr>`
+                 for (let i = 0; i < data.length; i = i + 1) {
+                     my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> <td> ${data[i]["album"]} </td> <td> ${data[i]["artiste"]} </td> <td> ${data[i]["genre"]} </td></tr>`
+                 }
+             });
+
+     })*/
+
+    bouton.addEventListener("click", function(event) {
+        event.preventDefault()
+
+        let album2 = album.value
+
+        let artiste2 = artiste.value
+
+        let genre2 = genre.value
+
+
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    album: album2,
+                    artiste: artiste2,
+                    genre: genre2
+                })
+
+            })
+
+            .then((response) => {
+                return response.json();
+            })
+
     })
 </script>
 
