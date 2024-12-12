@@ -67,7 +67,7 @@ function getAlbums($pdo)
 function addAlbum($album, $artiste, $genre, $pdo)
 {
 
-    echo "Album inséré";
+
     $sql = "INSERT INTO `albums` ( `album`, `artiste`, `genre`) 
     VALUES (:album, :artiste, :genre);";
 
@@ -87,7 +87,6 @@ function addAlbum($album, $artiste, $genre, $pdo)
 function editAlbum($idalbum, $album, $artiste, $genre, $pdo)
 {
 
-    echo "Album inséré";
     $sql = "UPDATE `albums` 
     SET `album` = :album, `artiste` = :artiste, `genre` = :genre 
     WHERE id =:idalbum;";
