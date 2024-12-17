@@ -24,6 +24,7 @@ $genre = getGenre($pdo);
         }
 
         table {
+            position: relative;
             width: 100%;
             border-collapse: collapse;
             border: 1px solid black;
@@ -39,6 +40,15 @@ $genre = getGenre($pdo);
         th {
             background-color: #009879;
             color: #fff;
+        }
+
+        .modal {
+            display: none;
+            position: absolute;
+            top: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -87,6 +97,23 @@ $genre = getGenre($pdo);
         </form>
     </div>
 
+    <div class="modal" tabindex="-1" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Insertion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal2">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 <script>
     let album = document.getElementById("album")
@@ -96,6 +123,10 @@ $genre = getGenre($pdo);
     let my_body = document.getElementById("my_body")
     let form = document.getElementById("form")
     let bouton = document.getElementById("ajout")
+    let modal = document.getElementById("myModal")
+    let modalMessage = document.getElementById("modalMessage")
+    let closeModal = document.getElementById("closeModal")
+    let closeModal2 = document.getElementById("closeModal2")
 
     let url1 = "http://mini_projet.test/api/api.php?action=getalbum"
     let url2 = "http://mini_projet.test/api/api.php?action=insertion"
@@ -139,10 +170,20 @@ $genre = getGenre($pdo);
             })
             .then(data => {
                 console.log(data);
-                alert(data.message);
+                modalMessage.textContent = data.message;
+                modal.style.display = "block";
+                my_body.innerHTML += `<tr> <td> ${data.idalbum} </td> <td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre2} </td></tr>`
             })
 
+        closeModal.addEventListener("click", function() {
+            modal.style.display = "none";
+        })
+        closeModal2.addEventListener("click", function() {
+            modal.style.display = "none";
+        })
     })
+    // fenetre modal position absolute et contient le message reussie avec bouton quand on clique dessus ca ferme la modale
 </script>
+
 
 </html>
