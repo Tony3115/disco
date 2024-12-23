@@ -162,16 +162,16 @@ $genre = getGenre($pdo);
 
         let artiste2 = artiste.value
 
-        let genre2 = genre.value
+        let genre_id = genre.value
 
-        let genre_name = genre.selectedOptions[0].text;
+        let genre_text = genre.selectedOptions[0].text;
 
         fetch(url2, {
                 method: 'POST',
                 body: JSON.stringify({
                     album: album2,
                     artiste: artiste2,
-                    genre: genre2
+                    genre: genre_id
                 })
 
             })
@@ -183,7 +183,7 @@ $genre = getGenre($pdo);
                 console.log(data);
                 modalMessage.textContent = data.message;
                 modal.style.display = "flex";
-                my_body.innerHTML += `<tr><td>${data.message_id} </td><td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre_name} </td></tr>`;
+                my_body.innerHTML += `<tr><td>${data.message_id} </td><td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre_text} </td></tr>`;
 
             })
 
