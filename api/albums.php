@@ -43,12 +43,22 @@ $genre = getGenre($pdo);
         }
 
         .modal {
+
             display: none;
-            position: absolute;
-            top: 80%;
-            padding: 10px;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: stretch;
+            position: fixed;
+            width: 100%;
+            padding: 5px;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-dialog {
+            width: 50%;
         }
     </style>
 </head>
@@ -171,7 +181,7 @@ $genre = getGenre($pdo);
             .then(data => {
                 console.log(data);
                 modalMessage.textContent = data.message;
-                modal.style.display = "block";
+                modal.style.display = "flex";
                 my_body.innerHTML += `<tr> <td> ${data.idalbum} </td> <td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre2} </td></tr>`
             })
 
@@ -182,7 +192,6 @@ $genre = getGenre($pdo);
             modal.style.display = "none";
         })
     })
-    // fenetre modal position absolute et contient le message reussie avec bouton quand on clique dessus ca ferme la modale
 </script>
 
 
