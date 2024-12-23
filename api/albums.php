@@ -80,7 +80,7 @@ $genre = getGenre($pdo);
 
     <div class="container">
         <h1>Ajout d'un album </h1>
-        <form action="#" method="post" id="form">
+        <form action="#" method="post">
             <div class="form-group">
                 <label for="exampleInputtitre">Album</label>
                 <input id="album" type="text" class="form-control" name="album" value="" required />
@@ -164,6 +164,7 @@ $genre = getGenre($pdo);
 
         let genre2 = genre.value
 
+        let genre_name = genre.selectedOptions[0].text;
 
         fetch(url2, {
                 method: 'POST',
@@ -182,7 +183,8 @@ $genre = getGenre($pdo);
                 console.log(data);
                 modalMessage.textContent = data.message;
                 modal.style.display = "flex";
-                my_body.innerHTML += `<tr><td>${data.message_id} </td><td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre2} </td></tr>`
+                my_body.innerHTML += `<tr><td>${data.message_id} </td><td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre_name} </td></tr>`;
+
             })
 
         closeModal.addEventListener("click", function() {

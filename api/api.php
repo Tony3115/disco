@@ -23,6 +23,7 @@ if ($action == "insertion") {
     $message_reussie = [
         "message" => "insertion réussie",
         "message_id" =>  $lastid,
+        "message_genre" => $genre
     ];
     $message_error = ["message" => "insertion échoué"];
 
