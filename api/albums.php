@@ -182,7 +182,7 @@ $genre = getGenre($pdo);
                 console.log(data);
                 modalMessage.textContent = data.message;
                 modal.style.display = "flex";
-                my_body.innerHTML += `<tr> <td> ${data.idalbum} </td> <td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre2} </td></tr>`
+                my_body.innerHTML += `<tr><td>${data.message_id} </td><td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre2} </td></tr>`
             })
 
         closeModal.addEventListener("click", function() {
