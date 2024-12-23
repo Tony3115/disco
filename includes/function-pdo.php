@@ -79,7 +79,8 @@ function addAlbum($album, $artiste, $genre, $pdo)
     ]; // les paramètres à mettre dans la requête sql
 
     $result = $stmt->execute($params);
-    return $result;
+    $lastid = $pdo->lastInsertId();
+    return $lastid;
 }
 
 

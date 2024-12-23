@@ -18,15 +18,18 @@ if ($action == "insertion") {
     $artiste = $r['artiste'];
     $genre = $r['genre'];
 
-    $result = addAlbum($album, $artiste, $genre, $pdo);
+    $lastid = addAlbum($album, $artiste, $genre, $pdo);
 
-    $message = ["message" => "insertion réussie"];
-    $message2 = ["message" => "insertion échoué"];
+    $message_reussie = [
+        "message" => "insertion réussie",
+        "message_id" =>  $lastid,
+    ];
+    $message_error = ["message" => "insertion échoué"];
 
 
-    if ($result == true) {
-        echo json_encode($message);
+    if ($lastid == true) {
+        echo json_encode($message_reussie);
     } else {
-        echo json_encode($message2);
+        echo json_encode($message_error);
     }
 }
