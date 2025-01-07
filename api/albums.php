@@ -5,6 +5,8 @@ include('../includes/function-pdo.php');
 
 $albums = getAlbums($pdo);
 $genre = getGenre($pdo);
+//$delete = effacerAlbum($idalbum, $pdo);
+
 ?>
 
 <head>
@@ -72,6 +74,7 @@ $genre = getGenre($pdo);
                 <th>Album</th>
                 <th>Artiste</th>
                 <th>Genre</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="my_body">
@@ -140,6 +143,7 @@ $genre = getGenre($pdo);
 
     let url1 = "http://mini_projet.test/api/api.php?action=getalbum"
     let url2 = "http://mini_projet.test/api/api.php?action=insertion"
+    let url3 = "http://mini_projet.test/api/api.php?action=delete"
 
     //affichage des albums
     document.addEventListener("DOMContentLoaded", function(event) {
@@ -149,12 +153,14 @@ $genre = getGenre($pdo);
             .then(data => {
                 //my_body.innerHTML = `<tr> <td> ${data[0]["idalbum"]} </td> <td> ${data[0]["album"]} </td> <td> ${data[0]["artiste"]} </td> <td> ${data[0]["genre"]} </td></tr>`
                 for (let i = 0; i < data.length; i = i + 1) {
-                    my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> <td> ${data[i]["album"]} </td> <td> ${data[i]["artiste"]} </td> <td> ${data[i]["genre"]} </td></tr>`
+                    my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> <td> ${data[i]["album"]} </td> <td> ${data[i]["artiste"]} </td> 
+                            <td> ${data[i]["genre"]} </td> <td><button type="button" class="delete-btn" data-id="${data[i]['idalbum']}">Effacer</button></td> </tr>`
                 }
             });
 
     })
 
+    //ajouter album
     bouton.addEventListener("click", function(event) {
         event.preventDefault()
 
@@ -183,7 +189,12 @@ $genre = getGenre($pdo);
                 console.log(data);
                 modalMessage.textContent = data.message;
                 modal.style.display = "flex";
-                my_body.innerHTML += `<tr><td>${data.message_id} </td><td> ${album2} </td> <td> ${artiste2} </td> <td> ${genre_text} </td></tr>`;
+                my_body.innerHTML += `<tr id="row_${data.message_id}">
+                <td>${data.message_id} </td>
+                <td> ${album2} </td>
+                 <td> ${artiste2}</td> 
+                <td> ${genre_text} </td> 
+                <td><button type="button" class="delete-btn" data-id="${data.message_id}">Effacer</button></td> </tr>`;
 
             })
 
