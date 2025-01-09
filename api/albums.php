@@ -153,8 +153,11 @@ $genre = getGenre($pdo);
             .then(data => {
                 //my_body.innerHTML = `<tr> <td> ${data[0]["idalbum"]} </td> <td> ${data[0]["album"]} </td> <td> ${data[0]["artiste"]} </td> <td> ${data[0]["genre"]} </td></tr>`
                 for (let i = 0; i < data.length; i = i + 1) {
-                    my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> <td> ${data[i]["album"]} </td> <td> ${data[i]["artiste"]} </td> 
-                            <td> ${data[i]["genre"]} </td> <td><button type="button" class="delete-btn" data-id="${data[i]['idalbum']}">Effacer</button></td> </tr>`
+                    my_body.innerHTML = my_body.innerHTML + `<tr> <td> ${data[i]["idalbum"]} </td> 
+                    <td> ${data[i]["album"]} </td> 
+                    <td> ${data[i]["artiste"]} </td> 
+                    <td> ${data[i]["genre"]} </td> 
+                    <td><button id="chanson_${data[i]['idalbum']}" type="button" class="delete-btn" data-id="${data[i]['idalbum']}">Effacer</button></td> </tr>`
                 }
             });
 
@@ -165,12 +168,10 @@ $genre = getGenre($pdo);
         event.preventDefault()
 
         let album2 = album.value
-
         let artiste2 = artiste.value
-
         let genre_id = genre.value
-
         let genre_text = genre.selectedOptions[0].text;
+
 
         fetch(url2, {
                 method: 'POST',
@@ -205,6 +206,14 @@ $genre = getGenre($pdo);
             modal.style.display = "none";
         })
     })
+
+    //effacer album
+
+    my_body.addEventListener("click", function(event) {
+
+        let chanson = event.target.id.split('_');
+        console.log(chanson[1]);
+    });
 </script>
 
 

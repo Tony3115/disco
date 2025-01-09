@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #container {
+            border: 30px solid red;
+        }
+
+        .toto {
+            padding: 10px;
+            width: 100px;
+            border: 2px solid blue;
+        }
+    </style>
+
+    <div id="container">
+        <div id="chanson_1" class="toto">Salut</div>
+        <div id="chanson_2" class="toto">ca</div>
+        <div id="chanson_3" class="toto">va</div>
+    </div>
+
+    <script>
+
+        container.addEventListener("click", function (event) {
+            console.log(container);
+            console.log(event.target.id);
+
+            let chanson = event.target.id.split('_');
+            console.log(chanson[1]);
+        })
+
+
+    </script>
+</body>
+
+</html>
