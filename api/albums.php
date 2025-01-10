@@ -211,9 +211,25 @@ $genre = getGenre($pdo);
 
     my_body.addEventListener("click", function(event) {
 
-        let chanson = event.target.id.split('_');
-        console.log(chanson[1]);
+        if (event.target.tagName === "BUTTON") {
+            let chanson = event.target.id.split('_');
+            console.log(chanson[1]);
+            console.log(event.target.tagName);
+        };
     });
+
+    fetch(url3, {
+            method: 'POST',
+            body: JSON.stringify({
+                album: album2,
+                artiste: artiste2,
+                genre: genre_id
+            })
+        })
+
+        .then((response) => {
+            return response.json();
+        })
 </script>
 
 
