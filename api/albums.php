@@ -227,7 +227,7 @@ $genre = getGenre($pdo);
             Envoyer au server avec fetch les données de l'album uniquement grace a l'id avec l'action delete dans l'url
             */
             fetch(url3, {
-                    method: 'POST',
+                    method: 'DELETE',
                     body: JSON.stringify({
                         chanson: chanson[1]
                     })
