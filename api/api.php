@@ -34,3 +34,28 @@ if ($action == "insertion") {
         echo json_encode($message_error);
     }
 }
+
+if ($action == "delete") {
+
+    $r = file_get_contents('php://input');
+    $r = json_decode($r, true);
+    $album = $r['album'];
+    $artiste = $r['artiste'];
+    $genre = $r['genre'];
+
+    $lastid = addAlbum($album, $artiste, $genre, $pdo);
+
+    $message_reussie = [
+        "message" => "insertion réussie",
+        "message_id" =>  $lastid,
+        "message_genre" => $genre
+    ];
+    $message_error = ["message" => "insertion échoué"];
+
+
+    if ($lastid == true) {
+        echo json_encode($message_reussie);
+    } else {
+        echo json_encode($message_error);
+    }
+}

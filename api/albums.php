@@ -211,25 +211,33 @@ $genre = getGenre($pdo);
 
     my_body.addEventListener("click", function(event) {
 
+        /*Click du bouton effacer pour voir son id 
+        (séparer pour n'avoir que le chiffre du nom pour n'avoir quele chiffre) 
+        et extraire le nom de l'élément HTML cliqué lorsque le nom est strictement égal à BUTTON */
+
         if (event.target.tagName === "BUTTON") {
             let chanson = event.target.id.split('_');
             console.log(chanson[1]);
-            console.log(event.target.tagName);
-        };
+            console.log(event.target.tagName)
+
+            /*Effacer un album
+            Envoyer au server avec fetch les données de l'album uniquement grace a l'id avec l'action delete dans l'url
+            */
+            fetch(url3, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        chanson: chanson[1]
+                    })
+                })
+
+                .then((response) => {
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                });
+        }
     });
-
-    fetch(url3, {
-            method: 'POST',
-            body: JSON.stringify({
-                album: album2,
-                artiste: artiste2,
-                genre: genre_id
-            })
-        })
-
-        .then((response) => {
-            return response.json();
-        })
 </script>
 
 
