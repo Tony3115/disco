@@ -47,5 +47,14 @@ if ($action == "delete") {
 
     $delete_album = effacerAlbum($idalbum, $pdo);
 
-    echo json_encode(["message" => 'hello']);
+    $message_reussie = [
+        "message" => "effacement réussie",
+    ];
+    $message_error = ["message" => "effacement échoué"];
+
+    if ($delete_album == true) {
+        echo json_encode($message_reussie);
+    } else {
+        echo json_encode($message_error);
+    }
 }

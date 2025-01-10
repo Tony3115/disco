@@ -190,13 +190,15 @@ $genre = getGenre($pdo);
                 console.log(data);
                 modalMessage.textContent = data.message;
                 modal.style.display = "flex";
-                my_body.innerHTML += `<tr id="row_${data.message_id}">
+
+                let new_row = `<tr id="row_${data.message_id}">
+
                 <td>${data.message_id} </td>
                 <td> ${album2} </td>
                  <td> ${artiste2}</td> 
                 <td> ${genre_text} </td> 
-                <td><button type="button" class="delete-btn" data-id="${data.message_id}">Effacer</button></td> </tr>`;
-
+                <td><button type="button" id="row_${data.message_id}" class="delete-btn">Effacer</button></td> </tr>`;
+                my_body.innerHTML += new_row
             })
 
         closeModal.addEventListener("click", function() {
@@ -234,8 +236,9 @@ $genre = getGenre($pdo);
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
+                    alert("album effacé");
                 });
+
         }
     });
 </script>
