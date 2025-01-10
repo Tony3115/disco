@@ -108,8 +108,6 @@ function editAlbum($idalbum, $album, $artiste, $genre, $pdo)
 //efface un album
 function effacerAlbum($idalbum, $pdo)
 {
-
-    echo "Album effacé";
     $sql = "DELETE FROM `albums`  WHERE id =:idalbum;DELETE FROM `chansons`  WHERE idalbum =:idalbum;";
 
     $params = [

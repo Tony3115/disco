@@ -37,25 +37,15 @@ if ($action == "insertion") {
 
 if ($action == "delete") {
 
+    /*Recevoir l'id de l'album a effacé JSON du front-end 
+    Suppression de l'album dans le serveur
+    Renvoyer la réponse du serveur me disant que l'album a été supprimer*/
+
     $r = file_get_contents('php://input');
     $r = json_decode($r, true);
-    $album = $r['album'];
-    $artiste = $r['artiste'];
-    $genre = $r['genre'];
+    $idalbum = $r['chanson'];
 
-    $lastid = addAlbum($album, $artiste, $genre, $pdo);
+    $delete_album = effacerAlbum($idalbum, $pdo);
 
-    $message_reussie = [
-        "message" => "insertion réussie",
-        "message_id" =>  $lastid,
-        "message_genre" => $genre
-    ];
-    $message_error = ["message" => "insertion échoué"];
-
-
-    if ($lastid == true) {
-        echo json_encode($message_reussie);
-    } else {
-        echo json_encode($message_error);
-    }
+    echo json_encode(["message" => 'hello']);
 }
