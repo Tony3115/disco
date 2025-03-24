@@ -141,9 +141,9 @@ $genre = getGenre($pdo);
     let closeModal = document.getElementById("closeModal")
     let closeModal2 = document.getElementById("closeModal2")
 
-    let url1 = "http://mini_projet.test/api/api.php?action=getalbum"
-    let url2 = "http://mini_projet.test/api/api.php?action=insertion"
-    let url3 = "http://mini_projet.test/api/api.php?action=delete"
+    let url1 = "/api/api.php?action=getalbum"
+    let url2 = "/api/api.php?action=insertion"
+    let url3 = "/api/api.php?action=delete"
 
     //affichage des albums
     document.addEventListener("DOMContentLoaded", function(event) {
