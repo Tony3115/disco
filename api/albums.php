@@ -190,7 +190,7 @@ $genre = getGenre($pdo);
                 console.log(data);
                 modalMessage.textContent = data.message;
                 modal.style.display = "flex";
-                debugger
+
 
                 let new_row = `<tr id="row_${data.message_id}">
 
